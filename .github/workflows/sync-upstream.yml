@@ -20,6 +20,9 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           fetch-depth: 0
+          # Default GITHUB_TOKEN can never push changes to .github/workflows/*.
+          # A PAT with the 'workflow' scope (classic) is required for that.
+          token: ${{ secrets.SYNC_PAT }}
 
       - name: Configure git
         run: |
